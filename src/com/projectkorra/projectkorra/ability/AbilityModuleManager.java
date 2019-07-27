@@ -83,6 +83,8 @@ public class AbilityModuleManager {
 		plantabilities = new ArrayList<String>();
 		iceabilities = new ArrayList<String>();
 		bloodabilities = new ArrayList<String>();
+		
+		//TODO: spirit
 		fill();
 	}
 

@@ -1,15 +1,16 @@
 package com.projectkorra.projectkorra.chiblocking;
 
-import com.projectkorra.projectkorra.GeneralMethods;
-import com.projectkorra.projectkorra.ProjectKorra;
-
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+
+import com.projectkorra.projectkorra.GeneralMethods;
+import com.projectkorra.projectkorra.ProjectKorra;
 
 /**
  * A representation of all chi combo moves.
@@ -22,6 +23,9 @@ public class ChiCombo {
 	
 	public static long IMMOBILIZE_DURATION = ProjectKorra.plugin.getConfig().getLong("Abilities.Chi.ChiCombo.Immobilize.ParalyzeDuration");
 	public static long IMMOBILIZE_COOLDOWN = ProjectKorra.plugin.getConfig().getLong("Abilities.Chi.ChiCombo.Immobilize.Cooldown");
+	public static double IMMOBILIZE_RANGE = ProjectKorra.plugin.getConfig().getDouble("Abilities.Chi.ChiCombo.Immobilize.Range");
+	public static boolean IMMOBILIZE_REDUCEDBOOLEAN = ProjectKorra.plugin.getConfig().getBoolean("Abilities.Chi.ChiCombo.Immobilize.ReduceCooldownIfMiss");
+	public static long IMMOBILIZE_REDUCEDCOOLDOWN = ProjectKorra.plugin.getConfig().getLong("Abilities.Chi.ChiCombo.Immobilize.ReducedCooldown");
 	/**
 	 * A List of every instance of an active {@link ChiCombo}.
 	 */
@@ -42,10 +46,18 @@ public class ChiCombo {
 				return;
 			else {
 				//this.player = player;
-				target = GeneralMethods.getTargetedEntity(player, 5, new ArrayList<Entity>());
+				target = GeneralMethods.getTargetedEntity(player, IMMOBILIZE_RANGE, new ArrayList<Entity>());
 				paralyze(target, IMMOBILIZE_DURATION);
 				instances.add(this);
+				if (target != null && target instanceof LivingEntity) {
 				GeneralMethods.getBendingPlayer(player.getName()).addCooldown("Immobilize", IMMOBILIZE_COOLDOWN);
+				} else {
+					if (IMMOBILIZE_REDUCEDBOOLEAN) {
+						GeneralMethods.getBendingPlayer(player.getName()).addCooldown("Immobilize", IMMOBILIZE_REDUCEDCOOLDOWN);
+					} else {
+						GeneralMethods.getBendingPlayer(player.getName()).addCooldown("Immobilize", IMMOBILIZE_COOLDOWN);
+					}
+				}
 			}
 		}
 	}

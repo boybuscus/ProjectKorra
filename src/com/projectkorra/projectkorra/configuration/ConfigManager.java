@@ -230,9 +230,10 @@ public class ConfigManager {
 				config.addDefault("Abilities.Air.Passive.Factor", 0.3);
 				config.addDefault("Abilities.Air.Passive.Speed", 2);
 				config.addDefault("Abilities.Air.Passive.Jump", 3);
-
+				
 				config.addDefault("Abilities.Air.AirBlast.Enabled", true);
 				config.addDefault("Abilities.Air.AirBlast.Description", "AirBlast is the most fundamental bending technique of an airbender." + " To use, simply left-click in a direction. A gust of wind will be" + " created at your fingertips, launching anything in its path harmlessly back." + " A gust of air can extinguish fires on the ground or on a player, can cool lava, and " + "can flip levers and activate buttons. Additionally, tapping sneak will change the " + "origin of your next AirBlast to your targeted location.");
+				config.addDefault("Abilities.Air.AirBlast.Cooldown", 250);
 				config.addDefault("Abilities.Air.AirBlast.Speed", 25);
 				config.addDefault("Abilities.Air.AirBlast.Range", 20);
 				config.addDefault("Abilities.Air.AirBlast.Radius", 2);
@@ -813,8 +814,12 @@ public class ConfigManager {
 
 				config.addDefault("Abilities.Chi.ChiCombo.Enabled", true);
 				config.addDefault("Abilities.Chi.ChiCombo.Immobilize.ParalyzeDuration", 4000);
+				config.addDefault("Abilities.Chi.ChiCombo.Immobilize.Range", 7.0);
 				config.addDefault("Abilities.Chi.ChiCombo.Immobilize.Cooldown", 15000);
-
+				config.addDefault("Abilities.Chi.ChiCombo.Immobilize.ReduceCooldownIfMiss", false);
+				config.addDefault("Abilities.Chi.ChiCombo.Immobilize.ReducedCooldown", 6000);
+				config.addDefault("Abilities.Chi.ChiCombo.Immobilize.DENEME", 6000);
+				
 				config.addDefault("Abilities.Chi.AcrobatStance.Enabled", true);
 				config.addDefault("Abilities.Chi.AcrobatStance.Description", "AcrobatStance gives a Chiblocker a higher probability of blocking a Bender's Chi while granting them a Speed and Jump Boost. It also increases the rate at which the hunger bar depletes. To use, simply left click. Left clicking again will de-activate the stance.");
 				config.addDefault("Abilities.Chi.AcrobatStance.ChiBlockBoost", 5);

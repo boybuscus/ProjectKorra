@@ -182,7 +182,7 @@ public class WaterArms {
 			remove();
 			return;
 		}
-		if (maxPunches == 0 || maxUses == 0 || maxIceBlasts == 0 || (leftArmConsumed && rightArmConsumed)) {
+		if (maxPunches <= 0 || maxUses <= 0 || maxIceBlasts <= 0 || (leftArmConsumed && rightArmConsumed)) {
 			remove();
 			return;
 		}

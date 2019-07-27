@@ -40,7 +40,9 @@ public class AirBlast implements ConfigLoadable {
 	public static double affectingradius = config.get().getDouble("Abilities.Air.AirBlast.Radius");
 	public static double defaultpushfactor = config.get().getDouble("Abilities.Air.AirBlast.Push.Entities");
 	public static double otherpushfactor = config.get().getDouble("Abilities.Air.AirBlast.Push.Self");
-
+	
+	public static long cooldown = config.get().getLong("Abilities.Air.AirBlast.Cooldown");
+	
 	public static boolean flickLevers = config.get().getBoolean("Abilities.Air.AirBlast.CanFlickLevers");
 	public static boolean openDoors = config.get().getBoolean("Abilities.Air.AirBlast.CanOpenDoors");
 	public static boolean pressButtons = config.get().getBoolean("Abilities.Air.AirBlast.CanPressButtons");
@@ -120,7 +122,7 @@ public class AirBlast implements ConfigLoadable {
 		instances.put(idCounter, this);
 		this.id = idCounter;
 		idCounter = (idCounter + 1) % Integer.MAX_VALUE;
-		bPlayer.addCooldown("AirBlast", GeneralMethods.getGlobalCooldown());
+		bPlayer.addCooldown("AirBlast", cooldown);
 
 		// time = System.currentTimeMillis();
 		// timers.put(player, System.currentTimeMillis());
@@ -489,6 +491,7 @@ public class AirBlast implements ConfigLoadable {
 		openDoors = config.get().getBoolean("Abilities.Air.AirBlast.CanOpenDoors");
 		pressButtons = config.get().getBoolean("Abilities.Air.AirBlast.CanPressButtons");
 		coolLava = config.get().getBoolean("Abilities.Air.AirBlast.CanCoolLava");
+		cooldown = config.get().getLong("Abilities.Air.AirBlast.Cooldown");
 		maxspeed = 1. / defaultpushfactor;
 		range = defaultrange;
 		pushfactor = defaultpushfactor;

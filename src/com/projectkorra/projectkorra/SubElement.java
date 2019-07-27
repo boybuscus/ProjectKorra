@@ -25,8 +25,10 @@ public enum SubElement {
 
 	// Fire
 	Combustion (Element.Fire, Commands.combustionaliases),  
-	Lightning (Element.Fire, Commands.lightningaliases);
-
+	Lightning (Element.Fire, Commands.lightningaliases),
+	//Spirit
+	DarkSpirit (Element.Spirit, Commands.darkspiritaliases),
+	LightSpirit (Element.Spirit, Commands.lightspiritaliases);
 	private Element element;
 	private String[] aliases;
 	

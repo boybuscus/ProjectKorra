@@ -62,6 +62,7 @@ public class WhoCommand extends PKCommand {
 		staff.put("38217173-8a32-4ba7-9fe1-dd4fed031a74", ChatColor.GREEN + "ProjectKorra Concept Designer"); // Easte
 
 		staff.put("3d5bc713-ab8b-4125-b5ba-a1c1c2400b2c", ChatColor.GOLD + "ProjectKorra Community Moderator"); // Gold
+		staff.put("419fbdc8-3d64-48ec-b1ee-c4438171f29f", ChatColor.DARK_RED + "ProjectKorra Beta 9 Modifier");
 
 		//staff.put("2ab334d1-9691-4994-a624-209c7b4f220b", ChatColor.BLUE + "ProjectKorra Digital Team"); // Austygen
 	}
@@ -115,6 +116,14 @@ public class WhoCommand extends PKCommand {
 						result = ChatColor.WHITE + playerName + " - " + ((!bp.isElementToggled(Element.Chi) || !bp.isToggled()) ? ChatColor.translateAlternateColorCodes('&', "&6&mC") : ChiMethods.getChiColor() + "C");
 					} else {
 						result = result + ChatColor.WHITE + " | " + ((!bp.isElementToggled(Element.Chi) || !bp.isToggled()) ? ChatColor.translateAlternateColorCodes('&', "&6&mC") : ChiMethods.getChiColor() + "C");
+					}
+				}
+				if (bp.hasElement(Element.Spirit)) {
+					if (result == "") {
+						result = ChatColor.WHITE + playerName + " - " + ((!bp.isElementToggled(Element.Spirit) || !bp.isToggled()) ? ChatColor.translateAlternateColorCodes('&', "&7&mS") : ChatColor.GRAY + "S");
+						
+					}else {
+						result = result + ChatColor.WHITE + " | " + ((!bp.isElementToggled(Element.Spirit) || !bp.isToggled()) ? ChatColor.translateAlternateColorCodes('&', "&7&mS") : ChatColor.GRAY+ "S");
 					}
 				}
 				if (staff.containsKey(player.getUniqueId().toString())) {
@@ -193,6 +202,8 @@ public class WhoCommand extends PKCommand {
 			runnable.runTaskAsynchronously(ProjectKorra.plugin);
 			return;
 		}
+		
+		//TODO: toggle stuff with spirit
 		if (BendingPlayer.getPlayers().containsKey(player.getUniqueId())) {
 			sender.sendMessage(player.getName() + (!player.isOnline() ? ChatColor.RESET + " (Offline)" : "") + " - ");
 			if (GeneralMethods.isBender(playerName, Element.Air)) {
@@ -267,6 +278,14 @@ public class WhoCommand extends PKCommand {
 					sender.sendMessage(ChiMethods.getChiColor() + "" + ChatColor.STRIKETHROUGH + "- Chiblocker");
 				}
 			}
+			if (GeneralMethods.isBender(playerName, Element.Spirit)) {
+				if(bplayer.isElementToggled(Element.Spirit)) {
+					sender.sendMessage(ChatColor.GRAY + "- Spirit");
+				} else {
+					//TODO: spirit subs
+					sender.sendMessage(ChatColor.GRAY + "" + ChatColor.STRIKETHROUGH + "- Spirit");
+				}
+				}
 			BendingPlayer bPlayer = GeneralMethods.getBendingPlayer(playerName);
 			UUID uuid = player.getUniqueId();
 			if (bPlayer != null) {

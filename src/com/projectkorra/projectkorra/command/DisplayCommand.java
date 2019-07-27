@@ -76,7 +76,7 @@ public class DisplayCommand extends PKCommand {
 
 			else {
 				ChatColor w = ChatColor.WHITE;
-				sender.sendMessage(ChatColor.RED + "Not a valid argument." + ChatColor.WHITE + "\nElements: " + AirMethods.getAirColor() + "Air" + ChatColor.WHITE + " | " + WaterMethods.getWaterColor() + "Water" + ChatColor.WHITE + " | " + EarthMethods.getEarthColor() + "Earth" + ChatColor.WHITE + " | " + FireMethods.getFireColor() + "Fire" + ChatColor.WHITE + " | " + ChiMethods.getChiColor() + "Chi");
+				sender.sendMessage(ChatColor.RED + "Not a valid argument." + ChatColor.WHITE + "\nElements: " + AirMethods.getAirColor() + "Air" + ChatColor.WHITE + " | " + WaterMethods.getWaterColor() + "Water" + ChatColor.WHITE + " | " + EarthMethods.getEarthColor() + "Earth" + ChatColor.WHITE + " | " + FireMethods.getFireColor() + "Fire" + ChatColor.WHITE + " | " + ChiMethods.getChiColor() + "Chi" +ChatColor.WHITE + " | " + ChatColor.GRAY + "Spirit");
 				sender.sendMessage(w + "SubElements: "
 						+ w + "\n-" + GeneralMethods.getSubBendingColor(Element.Air) + " Flight"
 						+ w + "\n-" + GeneralMethods.getSubBendingColor(Element.Earth) + " Lavabending"
@@ -87,7 +87,9 @@ public class DisplayCommand extends PKCommand {
 						+ w + "\n-" + GeneralMethods.getSubBendingColor(Element.Water) + " Bloodbending"
 						+ w + "\n-" + GeneralMethods.getSubBendingColor(Element.Water) + " Healing"
 						+ w + "\n-" + GeneralMethods.getSubBendingColor(Element.Water) + " Icebending"
-						+ w + "\n-" + GeneralMethods.getSubBendingColor(Element.Water) + " Plantbending");
+						+ w + "\n-" + GeneralMethods.getSubBendingColor(Element.Water) + " Plantbending"
+						+ w + "\n-" + GeneralMethods.getSubBendingColor(Element.Spirit) + " DarkSpirit"
+						+ w + "\n-" + ChatColor.LIGHT_PURPLE + " LightSpirit");
 			}
 		}
 		if (args.size() == 0) {
@@ -188,8 +190,18 @@ public class DisplayCommand extends PKCommand {
 				sender.sendMessage(ChatColor.DARK_AQUA + "Plantbending abilities: " + ChatColor.AQUA + "/bending display Plantbending");
 			}
 		}
+		//TODO: add spirit subs
 		if (element.equalsIgnoreCase("chi")) {
 			sender.sendMessage(ChatColor.GOLD + "Combos: " + ChatColor.YELLOW + "/bending display ChiCombos");
+		}
+		if (element.equalsIgnoreCase("spirit")) {
+			sender.sendMessage(ChatColor.DARK_GRAY +" Combos:" + ChatColor.GRAY + " /bending display SpiritCombos");
+			if (sender.hasPermission("bending.spirit.DarkSpirit")) {
+				sender.sendMessage(ChatColor.DARK_GRAY + "DarkSpirit abilities:" + ChatColor.GRAY + " /bending display DarkSpirit");
+			}
+			if (sender.hasPermission("bending.spirit.LightSpirit")) {
+				sender.sendMessage(ChatColor.DARK_GRAY + "LightSpirit abilities:" + ChatColor.GRAY + " /bending display LightSpirit");
+			}
 		}
 	}
 

@@ -114,6 +114,7 @@ import com.projectkorra.projectkorra.earthbending.Tremorsense;
 import com.projectkorra.projectkorra.event.HorizontalVelocityChangeEvent;
 import com.projectkorra.projectkorra.event.PlayerBendingDeathEvent;
 import com.projectkorra.projectkorra.event.PlayerChangeElementEvent;
+import com.projectkorra.projectkorra.event.PlayerCooldownChangeEvent;
 import com.projectkorra.projectkorra.firebending.ArcOfFire;
 import com.projectkorra.projectkorra.firebending.Combustion;
 import com.projectkorra.projectkorra.firebending.Enflamed;
@@ -151,6 +152,8 @@ import com.projectkorra.projectkorra.waterbending.WaterSpout;
 import com.projectkorra.projectkorra.waterbending.WaterWall;
 import com.projectkorra.projectkorra.waterbending.WaterWave;
 import com.projectkorra.projectkorra.waterbending.Wave;
+
+import sun.java2d.loops.DrawGlyphListAA.General;
 
 public class PKListener implements Listener {
 
@@ -198,6 +201,8 @@ public class PKListener implements Listener {
 		} else if (GeneralMethods.isBender(player.getName(), Element.Chi) && chatEnabled) {
 			append = plugin.getConfig().getString("Properties.Chat.Prefixes.Chi");
 			color = ChiMethods.getChiColor();
+		} else if  (GeneralMethods.isBender(player.getName(), Element.Spirit) && chatEnabled) {
+			
 		} else {
 			append = "[Nonbender]";
 			color = ChatColor.WHITE;
@@ -225,7 +230,19 @@ public class PKListener implements Listener {
 			}
 		}
 	}
-
+	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+	public void onCooldownChange(PlayerCooldownChangeEvent e) {
+		Player player = e.getPlayer();
+		String ability = e.getAbility();
+		
+		if (ability.equalsIgnoreCase("EarthSurf") && e.getCooldown() <= 50) {
+			player.setFlying(false);
+			if (player.getGameMode() != GameMode.CREATIVE) {
+				player.setAllowFlight(false);
+				player.setFlying(false);
+			}
+		}
+	}
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void onBlockBreak(BlockBreakEvent event) {
 		if (event.isCancelled())
@@ -386,6 +403,8 @@ public class PKListener implements Listener {
 			append = plugin.getConfig().getString("Properties.Chat.Prefixes.Chi");
 			color = ChiMethods.getChiColor();
 		} else {
+			
+			//TODO: spirit stuff
 			append = "[Nonbender]";
 			color = ChatColor.WHITE;
 		}
@@ -738,6 +757,8 @@ public class PKListener implements Listener {
 			color = ChatColor.valueOf(plugin.getConfig().getString("Properties.Chat.Colors.Fire"));
 		} else if (GeneralMethods.isBender(player.getName(), Element.Chi)) {
 			color = ChatColor.valueOf(plugin.getConfig().getString("Properties.Chat.Colors.Chi"));
+		} else if (GeneralMethods.isBender(player.getName(), Element.Spirit)) {
+			//TODO: spirit stuff 
 		}
 
 		String format = plugin.getConfig().getString("Properties.Chat.Format");
@@ -1378,6 +1399,7 @@ public class PKListener implements Listener {
 				if (GeneralMethods.isWeapon(player.getItemInHand().getType()) && !plugin.getConfig().getBoolean("Properties.Air.CanBendWithWeapons")) {
 					return;
 				}
+		
 				if (abil.equalsIgnoreCase("AirBlast")) {
 					new AirBlast(player);
 				}
@@ -1449,6 +1471,12 @@ public class PKListener implements Listener {
 			if (EarthMethods.isEarthAbility(abil) && GeneralMethods.getBendingPlayer(player.getName()).isElementToggled(Element.Earth) == true) {
 				if (GeneralMethods.isWeapon(player.getItemInHand().getType()) && !plugin.getConfig().getBoolean("Properties.Earth.CanBendWithWeapons")) {
 					return;
+				}
+				if (abil.equalsIgnoreCase("EarthSurf")) {
+					if (SandSpout.getPlayers().contains(player)) {
+						GeneralMethods.getBendingPlayer(player.getName()).addCooldown("EarthSurf", 50);
+						event.setCancelled(true);
+					}
 				}
 				if (abil.equalsIgnoreCase("Catapult")) {
 					new Catapult(player);

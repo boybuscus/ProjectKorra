@@ -120,6 +120,8 @@ public class ImportCommand extends PKCommand {
 						elements.append("f");
 					if (bPlayer.hasElement(Element.Chi))
 						elements.append("c");
+					if (bPlayer.hasElement(Element.Spirit))
+						elements.append("s");
 
 					HashMap<Integer, String> abilities = bPlayer.getAbilities();
 

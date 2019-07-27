@@ -68,10 +68,17 @@ public class RemoveCommand extends PKCommand {
 				bPlayer.getElements().remove(e);
 				GeneralMethods.saveElements(bPlayer);
 				GeneralMethods.removeUnusableAbilities(player.getName());
-				if (e == Element.Chi) {
-					sender.sendMessage(ChiMethods.getChiColor() + "You have removed the chiblocking of " + ChatColor.DARK_AQUA + player.getName());
-					player.sendMessage(ChiMethods.getChiColor() + "Your chiblocking has been removed by " + ChatColor.DARK_AQUA + sender.getName());
-				} else {
+			
+				if (e == Element.Chi || e == Element.Spirit) {
+					if (e== Element.Chi) {
+						sender.sendMessage(ChiMethods.getChiColor() + "You have removed the chiblocking of " + ChatColor.DARK_AQUA + player.getName());
+						player.sendMessage(ChiMethods.getChiColor() + "Your chiblocking has been removed by " + ChatColor.DARK_AQUA + sender.getName());
+					} else {
+						sender.sendMessage(ChatColor.GRAY + "You have removed the Spirit element from " + ChatColor.DARK_AQUA + player.getName());
+						player.sendMessage(ChatColor.GRAY + "Your Spirit abilities have been taken by " + ChatColor.DARK_AQUA + sender.getName());
+					}
+				
+				}else {
 					sender.sendMessage(GeneralMethods.getElementColor(e) + "You have removed the " + getElement(args.get(1)).toLowerCase() + "bending of " + ChatColor.DARK_AQUA + player.getName());
 					player.sendMessage(GeneralMethods.getElementColor(e) + "Your " + getElement(args.get(1)).toLowerCase() + "bending has been removed by " + ChatColor.DARK_AQUA + sender.getName());
 				}

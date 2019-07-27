@@ -110,15 +110,18 @@ public class AirScooter implements ConfigLoadable {
 		getFloor();
 		// Methods.verbose(player);
 		if (floorblock == null) {
+			player.setFlying(false);
 			remove();
 			return false;
 		}
 		if (!GeneralMethods.canBend(player.getName(), "AirScooter")) {
+			player.setFlying(false);
 			remove();
 			return false;
 		}
 
 		if (GeneralMethods.isRegionProtectedFromBuild(player, "AirScooter", player.getLocation())) {
+			player.setFlying(false);
 			remove();
 			return false;
 		}
@@ -141,6 +144,7 @@ public class AirScooter implements ConfigLoadable {
 		if (System.currentTimeMillis() > time + interval) {
 			time = System.currentTimeMillis();
 			if (player.getVelocity().length() < speed * .5) {
+				player.setFlying(false);
 				remove();
 				return false;
 			}

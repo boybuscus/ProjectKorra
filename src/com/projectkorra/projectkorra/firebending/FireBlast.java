@@ -238,7 +238,9 @@ public class FireBlast implements ConfigLoadable {
 						new Plantbending(block);
 					block.setType(Material.FIRE);
 				} else
+					if (dissipate) {
 					FireMethods.createTempFire(block.getLocation());
+					}
 				// block.setType(Material.FIRE);
 				if (dissipate) {
 					FireStream.ignitedblocks.put(block, player);

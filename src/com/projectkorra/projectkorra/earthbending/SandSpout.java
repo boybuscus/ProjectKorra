@@ -1,9 +1,10 @@
 package com.projectkorra.projectkorra.earthbending;
 
-import com.projectkorra.projectkorra.GeneralMethods;
-import com.projectkorra.projectkorra.ProjectKorra;
-import com.projectkorra.projectkorra.util.Flight;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.concurrent.ConcurrentHashMap;
 
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -12,9 +13,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.concurrent.ConcurrentHashMap;
+import com.projectkorra.projectkorra.GeneralMethods;
+import com.projectkorra.projectkorra.ProjectKorra;
+import com.projectkorra.projectkorra.util.Flight;
+
+import sun.java2d.loops.DrawGlyphListAA.General;
 
 public class SandSpout {
 
@@ -66,12 +69,20 @@ public class SandSpout {
 	}
 
 	private void spout() {
+	
 		if (!GeneralMethods.canBend(player.getName(), "SandSpout")
 		//				|| !Methods.hasAbility(player, Abilities.SandSpout)
+				|| !SandSpout.getPlayers().contains(player)
 		|| player.getEyeLocation().getBlock().isLiquid() || GeneralMethods.isSolid(player.getEyeLocation().getBlock()) || player.isDead() || !player.isOnline()) {
+			if (player.getGameMode() != GameMode.CREATIVE) {
+				player.setAllowFlight(false);
+				player.setFlying(false);
+			}
 			remove();
 			return;
 		}
+	
+		  
 		player.setFallDistance(0);
 		player.setSprinting(false);
 		if (GeneralMethods.rand.nextInt(2) == 0) {
@@ -81,12 +92,20 @@ public class SandSpout {
 		if (block != null && (block.getType() == Material.SAND || block.getType() == Material.SANDSTONE || block.getType() == Material.RED_SANDSTONE)) {
 			double dy = player.getLocation().getY() - block.getY();
 			if (dy > height) {
+				if (player.getGameMode() != GameMode.CREATIVE) {
+					player.setAllowFlight(false);
+					player.setFlying(false);
+				}
 				removeFlight();
 			} else {
 				allowFlight();
 			}
 			rotateSandColumn(block);
 		} else {
+			if (player.getGameMode() != GameMode.CREATIVE) {
+				player.setAllowFlight(false);
+				player.setFlying(false);
+			}
 			remove();
 		}
 	}
@@ -115,6 +134,7 @@ public class SandSpout {
 
 	@SuppressWarnings("deprecation")
 	private void rotateSandColumn(Block block) {
+
 
 		if (System.currentTimeMillis() >= time + interval) {
 			time = System.currentTimeMillis();

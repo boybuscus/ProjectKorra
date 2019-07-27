@@ -7,6 +7,7 @@ import com.projectkorra.projectkorra.ability.AvatarState;
 import com.projectkorra.projectkorra.configuration.ConfigLoadable;
 import com.projectkorra.rpg.event.EventManager;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -51,9 +52,11 @@ public class FireBurst implements ConfigLoadable {
 		}
 		if (AvatarState.isAvatarState(player))
 			chargetime = 0;
+		if (Bukkit.getPluginManager().getPlugin("ProjectKorraRPG") != null) {
 		if (EventManager.marker.containsKey(player.getWorld())) {
 			if (EventManager.marker.get(player.getWorld()).equalsIgnoreCase("SozinsComet"))
 				chargetime = 0;
+		}
 		}
 		this.player = player;
 		instances.put(player, this);

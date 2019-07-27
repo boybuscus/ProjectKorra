@@ -322,10 +322,13 @@ public class GeneralMethods {
 			return false;
 		if (MetalClips.isControlled(p))
 			return false;
-		if (EventManager.marker.get(p.getWorld()).equalsIgnoreCase("SolarEclipse") && FireMethods.isFireAbility(ability))
-			return false;
-		if (EventManager.marker.get(p.getWorld()).equalsIgnoreCase("LunarEclipse") && WaterMethods.isWaterAbility(ability))
-			return false;
+		if (Bukkit.getPluginManager().getPlugin("ProjectKorraRPG") != null) {
+			if (EventManager.marker.get(p.getWorld()).equalsIgnoreCase("SolarEclipse") && FireMethods.isFireAbility(ability))
+				return false;
+			if (EventManager.marker.get(p.getWorld()).equalsIgnoreCase("LunarEclipse") && WaterMethods.isWaterAbility(ability))
+				return false;
+		}
+	
 		return true;
 	}
 
@@ -367,7 +370,7 @@ public class GeneralMethods {
 			return false;
 		if (ChiMethods.isChiAbility(ability) && !isBender(player, Element.Chi))
 			return false;
-
+		
 		if (!EarthMethods.canLavabend(p) && EarthMethods.isLavabendingAbility(ability))
 			return false;
 		else if (!EarthMethods.canMetalbend(p) && EarthMethods.isMetalbendingAbility(ability))
@@ -459,6 +462,8 @@ public class GeneralMethods {
 						elements.add(Element.Fire);
 					if (element.contains("c"))
 						elements.add(Element.Chi);
+					if (element.contains("s")) 
+						elements.add(Element.Spirit);
 				}
 
 				final HashMap<Integer, String> abilities = new HashMap<Integer, String>();
@@ -1910,6 +1915,8 @@ public class GeneralMethods {
 			elements.append("f");
 		if (bPlayer.hasElement(Element.Chi))
 			elements.append("c");
+		if (bPlayer.hasElement(Element.Spirit))
+			elements.append("s");
 
 		DBConnection.sql.modifyQuery("UPDATE pk_players SET element = '" + elements + "' WHERE uuid = '" + uuid + "'");
 	}
@@ -2098,7 +2105,10 @@ public class GeneralMethods {
 				return WaterMethods.getWaterColor();
 			case Chi:
 				return ChiMethods.getChiColor();
+			case Spirit:
+				return ChatColor.GRAY;
 		}
+		
 		return null;
 	}
 }

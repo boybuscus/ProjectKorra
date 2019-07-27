@@ -97,6 +97,8 @@ public class ChooseCommand extends PKCommand {
 			target.sendMessage(color + "You are now an " + Character.toString(element.charAt(0)).toUpperCase() + element.substring(1) + "bender.");
 		} else if (element.equalsIgnoreCase("chi")) {
 			target.sendMessage(color + "You are now a Chiblocker.");
+		} else if (element.equalsIgnoreCase("spirit")) {
+			target.sendMessage(color +"You are now a Spirit.");
 		}
 		if (!(sender instanceof Player) || !((Player) sender).equals(target)) {
 			if (element.charAt(0) == 'w' || element.charAt(0) == 'f') {
@@ -105,6 +107,8 @@ public class ChooseCommand extends PKCommand {
 				sender.sendMessage(ChatColor.DARK_AQUA + target.getName() + color + " is now an " + Character.toString(element.charAt(0)).toUpperCase() + element.substring(1) + "bender.");
 			} else if (element.equalsIgnoreCase("chi")) {
 				target.sendMessage(color + "You are now a Chiblocker.");
+			} else if (element.equalsIgnoreCase("spirit")) {
+				target.sendMessage(color +"You are now a Spirit.");
 			}
 		}
 		GeneralMethods.removeUnusableAbilities(target.getName());

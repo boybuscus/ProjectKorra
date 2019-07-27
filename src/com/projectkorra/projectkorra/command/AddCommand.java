@@ -72,6 +72,8 @@ public class AddCommand extends PKCommand {
 				target.sendMessage(color + "You are also an " + Character.toString(element.charAt(0)).toUpperCase() + element.substring(1) + "bender.");
 			} else if (element.charAt(0) == 'c' || element.equalsIgnoreCase("chi")) {
 				target.sendMessage(color + "You are now a Chiblocker.");
+			} else if (element.charAt(0) == 's' || element.equalsIgnoreCase("spirit")) {
+				target.sendMessage(color + "You have become a Spirit!");
 			}
 			if (!(sender instanceof Player) || !((Player) sender).equals(target)) {
 				if (element.charAt(0) == 'w' || element.charAt(0) == 'f') {
@@ -80,6 +82,9 @@ public class AddCommand extends PKCommand {
 					sender.sendMessage(ChatColor.DARK_AQUA + target.getName() + color + " is also an " + Character.toString(element.charAt(0)).toUpperCase() + element.substring(1) + "bender.");
 				} else if (element.charAt(0) == 'c' || element.equalsIgnoreCase("chi")) {
 					sender.sendMessage(ChatColor.DARK_AQUA + target.getName() + color + " is also a " + Character.toString(element.charAt(0)).toUpperCase() + element.substring(1) + "blocker.");
+				} else if (element.charAt(0) == 's' || element.equals("spirit")) {
+					sender.sendMessage(ChatColor.DARK_AQUA + target.getName() + color + " is also a " + Character.toString(element.charAt(0)).toUpperCase() + element.substring(1) + "Spirit.");
+					
 				}
 			}
 			GeneralMethods.saveElements(bPlayer);

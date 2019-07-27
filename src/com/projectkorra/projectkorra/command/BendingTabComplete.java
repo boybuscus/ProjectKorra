@@ -74,6 +74,9 @@ public class BendingTabComplete implements TabCompleter {
 				list.add("WaterCombos");
 				list.add("ChiCombos");
 				list.add("Avatar");
+				list.add("Spirit");
+				list.add("DarkSpirit");
+				list.add("LightSpirit");
 				return getPossibleCompletionsForGivenArgs(args, list);
 			} else if (args[0].equalsIgnoreCase("add") || args[0].equalsIgnoreCase("a") || args[0].equalsIgnoreCase("choose") || args[0].equalsIgnoreCase("ch")) {
 				if (args.length > 3 || !sender.hasPermission("bending.command.add"))
@@ -85,6 +88,7 @@ public class BendingTabComplete implements TabCompleter {
 					l.add("Fire");
 					l.add("Water");
 					l.add("Chi");
+					l.add("Spirit");
 				} else {
 					for (Player p : Bukkit.getOnlinePlayers()) {
 						l.add(p.getName());
@@ -186,6 +190,7 @@ public class BendingTabComplete implements TabCompleter {
 					l.add("Fire");
 					l.add("Water");
 					l.add("Chi");
+					l.add("Spirit");
 				}
 				return getPossibleCompletionsForGivenArgs(args, l);
 			} else if (args[0].equalsIgnoreCase("who") || args[0].equalsIgnoreCase("w")) {

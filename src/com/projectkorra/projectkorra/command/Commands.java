@@ -35,8 +35,9 @@ public class Commands {
 	public static String[] earthaliases = { "earth", "e", "earthbending", "earthbender" };
 	public static String[] firealiases = { "fire", "f", "firebending", "firebender" };
 	public static String[] wateraliases = { "water", "w", "waterbending", "waterbender" };
-	public static String[] elementaliases = { "air", "a", "airbending", "airbender", "chi", "c", "chiblocking", "chiblocker", "earth", "e", "earthbending", "earthbender", "fire", "f", "firebending", "firebender", "water", "w", "waterbending", "waterbender" };
+	public static String[] elementaliases = { "air", "a", "airbending", "airbender", "chi", "c", "chiblocking", "chiblocker", "earth", "e", "earthbending", "earthbender", "fire", "f", "firebending", "firebender", "water", "w", "waterbending", "waterbender", "spirit", "s" };
 	public static String[] avataraliases = { "avatar", "av", "avy", "aang", "korra" };
+	public static String[] spiritaliases = {  "darkspirit","spirit","lightspirit","sp", "s"};
 	
 	/*
 	 * Combo Aliases
@@ -46,6 +47,7 @@ public class Commands {
 	public static String[] earthcomboaliases = { "earthcombo", "ec", "earthcombos", "earthbendingcombos" };
 	public static String[] firecomboaliases = { "firecombo", "fc", "firecombos", "firebendingcombos" };
 	public static String[] watercomboaliases = { "watercombo", "wc", "watercombos", "waterbendingcombos" };
+	public static String[] spiritcomboaliases = { "spiritcombo", "spc", "spcombos", "spiritcombos" };
 
 	public static String[] comboaliases = { "aircombo", "ac", "aircombos", "airbendingcombos", "chicombo", "cc", "chicombos", "chiblockingcombos", "chiblockercombos", "earthcombo", "ec", "earthcombos", "earthbendingcombos", "firecombo", "fc", "firecombos", "firebendingcombos", "watercombo", "wc", "watercombos", "waterbendingcombos" };
 
@@ -53,7 +55,7 @@ public class Commands {
 	 * Subelement Aliases
 	 */
 
-	public static String[] subelementaliases = { "flight", "fl", "spiritualprojection", "sp", "spiritual", "bloodbending", "bb", "healing", "heal", "icebending", "ice", "ib", "plantbending", "plant", "metalbending", "mb", "metal", "lavabending", "lb", "lava", "sandbending", "sb", "sand", "combustionbending", "combustion", "cb", "lightningbending", "lightning" };
+	public static String[] subelementaliases = { "flight", "fl", "spiritualprojection", "sp", "spiritual", "bloodbending", "bb", "healing", "heal", "icebending", "ice", "ib", "plantbending", "plant", "metalbending", "mb", "metal", "lavabending", "lb", "lava", "sandbending", "sb", "sand", "combustionbending", "combustion", "cb", "lightningbending", "lightning","lightspirit","lsp","darkspirit","dsp" };
 	//Air
 	public static String[] flightaliases = { "flight", "fl" };
 	public static String[] spiritualprojectionaliases = { "spiritualprojection", "sp", "spiritual" };
@@ -73,6 +75,10 @@ public class Commands {
 	public static String[] combustionaliases = { "combustionbending", "combustion", "cb" };
 	public static String[] lightningaliases = { "lightningbending", "lightning" };
 	
+	//LightSpirit
+	public static String[] lightspiritaliases = {"lightspirit","lsp"};
+	//DarkSpirit
+	public static String[] darkspiritaliases = {"darkspirit","dsp"};
 	//Miscellaneous
 	public static String[] commandaliases = { "b", "pk", "bending", "mtla", "tla", "korra", "bend" };
 

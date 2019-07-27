@@ -40,6 +40,7 @@ public class WaterArmsFreeze {
 	private long usageCooldown = config.getLong("Abilities.Water.WaterArms.Arms.Cooldowns.UsageCooldown");
 
 	private Location location;
+	private Location location2;
 	private Vector direction;
 	private int distanceTravelled;
 	private Arm arm;
@@ -82,6 +83,7 @@ public class WaterArmsFreeze {
 			}
 			Vector dir = player.getLocation().getDirection();
 			location = waterArms.getActiveArmEnd().add(dir.normalize().multiply(1));
+			location2 = waterArms.getActiveArmEnd();
 			direction = GeneralMethods.getDirection(location, GeneralMethods.getTargetedLocation(player, iceRange, new Integer[] { 8, 9, 79, 174 })).normalize();
 		} else {
 			return;
@@ -117,7 +119,10 @@ public class WaterArmsFreeze {
 			remove();
 			return;
 		}
-		progressIce();
+	 
+			progressIce();
+		
+	
 	}
 
 	private boolean canPlaceBlock(Block block) {
@@ -131,6 +136,7 @@ public class WaterArmsFreeze {
 	}
 
 	private void progressIce() {
+	
 		ParticleEffect.SNOW_SHOVEL.display(location, (float) Math.random(), (float) Math.random(), (float) Math.random(), (float) 0.05, 5);
 		new TempBlock(location.getBlock(), Material.ICE, (byte) 0);
 		WaterArms.revert.put(location.getBlock(), System.currentTimeMillis() + 10L);

@@ -164,6 +164,8 @@ public abstract class PKCommand implements SubCommand {
 			return "water";
 		else if (Arrays.asList(Commands.chialiases).contains(element) || Arrays.asList(Commands.chicomboaliases).contains(element))
 			return "chi";
+		else if (Arrays.asList(Commands.spiritaliases).contains(element))
+			return "spirit";
 		return null;
 	}
 

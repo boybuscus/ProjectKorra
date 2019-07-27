@@ -16,8 +16,9 @@ public enum Element {
 	Water (WaterMethods.getWaterColor(), WaterMethods.getWaterSubColor()), 
 	Earth (EarthMethods.getEarthColor(), EarthMethods.getEarthSubColor()), 
 	Fire (FireMethods.getFireColor(), FireMethods.getFireSubColor()), 
-	Chi (ChiMethods.getChiColor(), ChiMethods.getChiColor());
-	
+	Chi (ChiMethods.getChiColor(), ChiMethods.getChiColor()),
+	Spirit (ChatColor.GRAY, ChatColor.DARK_GRAY);
+
 	private ChatColor color, subcolor;
 
 	Element(ChatColor mainColor, ChatColor subColor) {
@@ -57,6 +58,9 @@ public enum Element {
 		}
 		if (this == Earth) {
 			return new SubElement[] {SubElement.Sandbending, SubElement.Metalbending, SubElement.Lavabending};
+		}
+		if (this == Element.Spirit) {
+			return new SubElement[] {SubElement.DarkSpirit, SubElement.LightSpirit};
 		}
 		return new SubElement[] {};
 	}

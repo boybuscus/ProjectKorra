@@ -62,7 +62,8 @@ public class SandSpout extends SandAbility {
 			topBlock = player.getLocation().getBlock();
 		}
 		Material mat = topBlock.getType();
-		if (mat != Material.SAND && mat != Material.SANDSTONE && mat != Material.RED_SANDSTONE && mat != Material.RED_SAND) {
+		
+		if(!mat.toString().contains("Sand")) {
 			return;
 		}
 		
@@ -121,7 +122,6 @@ public class SandSpout extends SandAbility {
 		return null;
 	}
 	
-	@SuppressWarnings("deprecation")
 	private void rotateSandColumn(Block block) {
 
 
@@ -152,10 +152,15 @@ public class SandSpout extends SandAbility {
 				if (SPIRAL) {
 					displayHelix(block.getLocation(), this.player.getLocation(), block);
 				}
-				if (block != null && ((block.getType() == Material.SAND && block.getData() == (byte) 0) || block.getType() == Material.SANDSTONE)) {
-					displaySandParticle(effectloc2, 20, 1f, 3f, 1f, .2f, false);
-				} else if (block != null && ((block.getType() == Material.SAND && block.getData() == (byte) 1) || block.getType() == Material.RED_SANDSTONE)) {
-					displaySandParticle(effectloc2, 20, 1f, 3f, 1f, .2f, true);
+				
+				if(block.getType().toString().contains("Red")) {
+					if(block.getType().toString().contains("Sand")) {
+						displaySandParticle(effectloc2, 20, 1f, 3f, 1f, .2f, true);
+					} 
+				} else {
+					if(block.getType().toString().contains("Sand")) {
+						displaySandParticle(effectloc2, 20, 1f, 3f, 1f, .2f, false);
+					}
 				}
 
 				Collection<Player> players = GeneralMethods.getPlayersAroundPoint(effectloc2, 1.5f);
@@ -170,7 +175,6 @@ public class SandSpout extends SandAbility {
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	private void displayHelix(Location location, Location player, Block block) {
 		this.y += 0.1;
 		if (this.y >= player.getY() - location.getY()) {
@@ -183,12 +187,16 @@ public class SandSpout extends SandAbility {
 			double nz = z * -1;
 			Location newloc = new Location(player.getWorld(), location.getX() + x, location.getY() + y, location.getZ() + z);
 			Location secondloc = new Location(player.getWorld(), location.getX() + nx, location.getY() + y, location.getZ() + nz);
-			if (block != null && ((block.getType() == Material.SAND && block.getData() == (byte) 0) || block.getType() == Material.SANDSTONE)) {
-				displaySandParticle(newloc.add(0.5, 0.5, 0.5), 2, 0.1F, 0.1F, 0.1F, 1, false);
-				displaySandParticle(secondloc.add(0.5, 0.5, 0.5), 2, 0.1F, 0.1F, 0.1F, 1, false);
-			} else if (block != null && ((block.getType() == Material.SAND && block.getData() == (byte) 1) || block.getType() == Material.RED_SANDSTONE)) {
-				displaySandParticle(newloc.add(0.5, 0.5, 0.5), 2, 0.1F, 0.1F, 0.1F, 1, true);
-				displaySandParticle(secondloc.add(0.5, 0.5, 0.5), 2, 0.1F, 0.1F, 0.1F, 1, true);
+			if(block.getType().toString().contains("Red")) {
+				if(block.getType().toString().contains("Sand")) {
+					displaySandParticle(newloc.add(0.5, 0.5, 0.5), 2, 0.1F, 0.1F, 0.1F, 1, true);
+					displaySandParticle(secondloc.add(0.5, 0.5, 0.5), 2, 0.1F, 0.1F, 0.1F, 1, true);
+				} 
+			} else {
+				if(block.getType().toString().contains("Sand")) {
+					displaySandParticle(newloc.add(0.5, 0.5, 0.5), 2, 0.1F, 0.1F, 0.1F, 1, false);
+					displaySandParticle(secondloc.add(0.5, 0.5, 0.5), 2, 0.1F, 0.1F, 0.1F, 1, false);
+				}
 			}
 		}
 	}
@@ -226,7 +234,7 @@ public class SandSpout extends SandAbility {
 			playSandbendingSound(player.getLocation());
 		}
 		Block block = getGround();
-		if (block != null && (block.getType() == Material.SAND || block.getType() == Material.SANDSTONE || block.getType() == Material.RED_SANDSTONE)) {
+		if (block != null && block.getType().toString().contains("Sand")) {
 			double dy = player.getLocation().getY() - block.getY();
 			if (dy > height) {
 				if (player.getGameMode() != GameMode.CREATIVE) {

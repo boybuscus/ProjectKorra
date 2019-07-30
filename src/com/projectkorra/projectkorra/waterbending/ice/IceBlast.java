@@ -73,7 +73,6 @@ public class IceBlast extends IceAbility {
 			this.range = getConfig().getDouble("Abilities.Avatar.AvatarState.Water.IceBlast.Range");
 			this.damage = getConfig().getInt("Abilities.Avatar.AvatarState.Water.IceBlast.Damage");
 		}
-
 		block(player);
 		this.range = getNightFactor(this.range, player.getWorld());
 		final Block sourceBlock = BlockSource.getWaterSourceBlock(player, this.range, ClickType.SHIFT_DOWN, false, true, false, false, false);

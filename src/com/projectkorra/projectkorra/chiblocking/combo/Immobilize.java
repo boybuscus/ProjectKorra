@@ -23,6 +23,7 @@ public class Immobilize extends ChiAbility implements ComboAbility {
 	private long duration;
 	@Attribute(Attribute.COOLDOWN)
 	private long cooldown;
+	private double range;
 	private Entity target;
 
 	public Immobilize(final Player player) {
@@ -30,6 +31,8 @@ public class Immobilize extends ChiAbility implements ComboAbility {
 
 		this.cooldown = getConfig().getLong("Abilities.Chi.Immobilize.Cooldown");
 		this.duration = getConfig().getLong("Abilities.Chi.Immobilize.ParalyzeDuration");
+		this.range = getConfig().getDouble("Abilities.Chi.Immobilize.Range");
+		//TODO: add config options for Immobilize to config package for Range
 		this.target = GeneralMethods.getTargetedEntity(player, 5);
 		if (!this.bPlayer.canBendIgnoreBinds(this)) {
 			return;
@@ -38,7 +41,7 @@ public class Immobilize extends ChiAbility implements ComboAbility {
 			this.remove();
 			return;
 		} else {
-			if (GeneralMethods.isRegionProtectedFromBuild(this, target.getLocation()) || ((target instanceof Player) && Commands.invincible.contains(((Player) target).getName()))){
+			if (GeneralMethods.isRegionProtectedFromBuild(this, target.getLocation()) || ((target instanceof Player) && Commands.invincible.contains(((Player) target).getName())) || !(target instanceof LivingEntity)){
 				return;
 			}
 			paralyze(this.target, this.duration);
@@ -95,10 +98,10 @@ public class Immobilize extends ChiAbility implements ComboAbility {
 	@Override
 	public ArrayList<AbilityInformation> getCombination() {
 		final ArrayList<AbilityInformation> immobilize = new ArrayList<>();
-		immobilize.add(new AbilityInformation("QuickStrike", ClickType.LEFT_CLICK_ENTITY));
-		immobilize.add(new AbilityInformation("SwiftKick", ClickType.LEFT_CLICK_ENTITY));
-		immobilize.add(new AbilityInformation("QuickStrike", ClickType.LEFT_CLICK_ENTITY));
-		immobilize.add(new AbilityInformation("QuickStrike", ClickType.LEFT_CLICK_ENTITY));
+		immobilize.add(new AbilityInformation("QuickStrike", ClickType.LEFT_CLICK));
+		immobilize.add(new AbilityInformation("SwiftKick", ClickType.LEFT_CLICK));
+		immobilize.add(new AbilityInformation("QuickStrike", ClickType.LEFT_CLICK));
+		immobilize.add(new AbilityInformation("QuickStrike", ClickType.LEFT_CLICK));
 		return immobilize;
 	}
 

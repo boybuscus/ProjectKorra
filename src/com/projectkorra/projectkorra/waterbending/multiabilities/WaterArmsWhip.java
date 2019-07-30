@@ -449,7 +449,7 @@ public class WaterArmsWhip extends WaterAbility {
 
 	@Override
 	public boolean isSneakAbility() {
-		return true;
+		return false;
 	}
 
 	@Override

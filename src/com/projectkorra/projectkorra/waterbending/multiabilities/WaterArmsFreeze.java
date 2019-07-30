@@ -183,7 +183,7 @@ public class WaterArmsFreeze extends IceAbility {
 
 	@Override
 	public boolean isSneakAbility() {
-		return true;
+		return false;
 	}
 
 	@Override

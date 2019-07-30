@@ -549,6 +549,19 @@ public class GeneralMethods {
 	}
 
 	/**
+	 * Calculates and sets velocity to entity from one point to another.
+	 * BendingPlugin and creates a converted.yml ready for conversion.
+	 *
+	 * @throws NullPointerException if entity is null.
+	 */
+	
+	public static void fromOnePointToAnother(Location first, Location second, double guc, Entity velocityEnt) {
+		Vector pos = first.toVector();
+        Vector target = second.toVector();
+        Vector velocity = target.subtract(pos);
+        velocityEnt.setVelocity(velocity.normalize().multiply(guc));
+	}
+	/**
 	 * Deserializes the configuration file "bendingPlayers.yml" of the old
 	 * BendingPlugin and creates a converted.yml ready for conversion.
 	 *

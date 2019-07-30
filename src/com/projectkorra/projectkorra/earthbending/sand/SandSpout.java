@@ -26,13 +26,11 @@ public class SandSpout extends SandAbility {
 	private static final int BTIME = ProjectKorra.plugin.getConfig().getInt("Abilities.Earth.SandSpout.BlindnessTime");
 	private static final int SPOUTDAMAGE = ProjectKorra.plugin.getConfig().getInt("Abilities.Earth.SandSpout.SpoutDamage");
 	private static final boolean SPIRAL = ProjectKorra.plugin.getConfig().getBoolean("Abilities.Earth.SandSpout.Spiral");
-	private static final double SPEED = ProjectKorra.plugin.getConfig().getDouble("Abilities.Earth.SandSpout.SpoutSpeed");
 	private static final long COOLDOWN = ProjectKorra.plugin.getConfig().getLong("Abilities.Earth.SandSpout.Cooldown");
 	private static final long interval = 100;
 	
 	private long time;
 	private int angle = 0;
-	private double speed = SPEED;
 	private double height = HEIGHT;
 	private int bTime = BTIME;
 	private long cooldown = COOLDOWN;
@@ -69,7 +67,7 @@ public class SandSpout extends SandAbility {
 		}
 		
 		if (this.bPlayer.isAvatarState()) {
-			this.height = getConfig().getDouble("Abilities.Avatar.AvatarState.Earth.Sand.SandSpout.Height");
+			this.height = getConfig().getDouble("Abilities.Avatar.AvatarState.Earth.SandSpout.Height");
 		}
 		
 		flightHandler.createInstance(player, this.getName());
@@ -104,13 +102,12 @@ public class SandSpout extends SandAbility {
 	private void allowFlight() {
 		player.setAllowFlight(true);
 		player.setFlying(true);
-		player.setFlySpeed((float) speed);
+		player.setFlySpeed(.05f);
 	}
 
 	private void removeFlight() {
 		player.setAllowFlight(false);
 		player.setFlying(false);
-		player.setFlySpeed(.1f);
 	}
 
 	private Block getGround() {
@@ -253,6 +250,8 @@ public class SandSpout extends SandAbility {
 	@Override
 	public void remove() {
 		super.remove();
+		player.setFlySpeed(.1f);
+		removeFlight();
 		flightHandler.removeInstance(this.player, this.getName());
 	}
 	
@@ -263,17 +262,9 @@ public class SandSpout extends SandAbility {
 	public double getHeight() {
 		return height;
 	}
-	
-	public double getSpeed() {
-		return speed;
-	}
 
 	public void setHeight(double height) {
 		this.height = height;
-	}
-	
-	public void setSpeed(double speed) {
-		this.speed = speed;
 	}
 
 	@Override

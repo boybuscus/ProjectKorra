@@ -1247,10 +1247,9 @@ public class ConfigManager {
 			config.addDefault("Abilities.Earth.SandSpout.Enabled", true);
 			config.addDefault("Abilities.Earth.SandSpout.Cooldown", 0);
 			config.addDefault("Abilities.Earth.SandSpout.Height", 9);
-			config.addDefault("Abilities.Earth.SandSpout.SpoutSpeed", 0.5);
 			config.addDefault("Abilities.Earth.SandSpout.BlindnessTime", 10);
 			config.addDefault("Abilities.Earth.SandSpout.SpoutDamage", 1);
-			config.addDefault("Abilities.Earth.SandSpout.Spiral", true);
+			config.addDefault("Abilities.Earth.SandSpout.Spiral", false);
 
 			config.addDefault("Abilities.Earth.EarthSmash.Enabled", true);
 			config.addDefault("Abilities.Earth.EarthSmash.Duration", 30000);

@@ -148,22 +148,25 @@ public class AirScooter extends AirAbility {
 			this.remove();
 			return;
 		}
-		
-		/*
-		 * Speed no longer decreases if you're looking below or with a tilted angle
-		 */
 
-		Vector velocity = player.getEyeLocation().getDirection().clone();
-		velocity.setY(0);
-		velocity = velocity.clone().normalize().multiply(speed);
-		if (System.currentTimeMillis() > this.getStartTime() + interval) {
-			
-			if (player.getVelocity().length() < speed * .5) {
-				player.setFlying(false);
-				remove();
-				return;
+		Vector velocity = this.player.getLocation().getDirection().clone().normalize();
+		velocity = velocity.clone().normalize().multiply(this.speed);
+		/*
+		 * checks the players speed and ends the move if they are going too slow
+		 */
+		if (System.currentTimeMillis() > this.getStartTime() + this.interval) {
+			if (useslime) {
+				if (this.slime.getVelocity().length() < this.speed * 0.3) {
+					this.remove();
+					return;
+				}
+			} else {
+				if (this.player.getVelocity().length() < this.speed * 0.3) {
+					this.remove();
+					return;
+				}
 			}
-			spinScooter();
+			this.spinScooter();
 		}
 		/*
 		 * Checks for how far the ground is away from the player it elevates or

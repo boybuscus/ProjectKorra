@@ -1359,8 +1359,6 @@ public class PKListener implements Listener {
 						}
 					} else if (abil.equalsIgnoreCase("EarthGrab")) {
 						new EarthGrab(player, GrabMode.DRAG);
-					} else if (abil.equalsIgnoreCase("SandSpout")) {
-						new SandSpout(player);
 					}
 				}
 
@@ -1572,6 +1570,8 @@ public class PKListener implements Listener {
 						new EarthSmash(player, ClickType.LEFT_CLICK);
 					} else if (abil.equalsIgnoreCase("EarthGrab")) {
 						new EarthGrab(player, GrabMode.PROJECTING);
+					}  else if (abil.equalsIgnoreCase("SandSpout")) {
+						new SandSpout(player);
 					}
 				}
 			}

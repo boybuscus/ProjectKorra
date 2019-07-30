@@ -157,13 +157,11 @@ public class AirScooter extends AirAbility {
 		velocity.setY(0);
 		velocity = velocity.clone().normalize().multiply(speed);
 		if (System.currentTimeMillis() > this.getStartTime() + interval) {
-			
 			if (player.getVelocity().length() < speed * .5) {
-				player.setFlying(false);
-				remove();
+				this.remove();
 				return;
 			}
-			spinScooter();
+			this.spinScooter();
 		}
 		/*
 		 * Checks for how far the ground is away from the player it elevates or

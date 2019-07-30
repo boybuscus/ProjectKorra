@@ -25,6 +25,7 @@ import com.projectkorra.projectkorra.earthbending.metal.MetalClips;
 import com.projectkorra.projectkorra.earthbending.passive.DensityShift;
 import com.projectkorra.projectkorra.earthbending.passive.EarthPassive;
 import com.projectkorra.projectkorra.earthbending.passive.FerroControl;
+import com.projectkorra.projectkorra.earthbending.sand.SandSpout;
 import com.projectkorra.projectkorra.event.EntityBendingDeathEvent;
 import com.projectkorra.projectkorra.event.HorizontalVelocityChangeEvent;
 import com.projectkorra.projectkorra.event.PlayerChangeElementEvent;
@@ -1358,6 +1359,8 @@ public class PKListener implements Listener {
 						}
 					} else if (abil.equalsIgnoreCase("EarthGrab")) {
 						new EarthGrab(player, GrabMode.DRAG);
+					} else if (abil.equalsIgnoreCase("SandSpout")) {
+						new SandSpout(player);
 					}
 				}
 

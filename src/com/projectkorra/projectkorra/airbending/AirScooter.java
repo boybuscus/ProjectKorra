@@ -112,7 +112,7 @@ public class AirScooter extends AirAbility {
 	private void getFloor() {
 		this.floorblock = null;
 		for (int i = 0; i <= this.maxHeightFromGround; i++) {
-			final Block block = this.player.getEyeLocation().getBlock().getRelative(BlockFace.DOWN, i);
+			final Block block = this.player.getLocation().getBlock().getRelative(BlockFace.DOWN, i);
 			if (GeneralMethods.isSolid(block) || ElementalAbility.isWater(block)) {
 				this.floorblock = block;
 				return;
@@ -149,7 +149,7 @@ public class AirScooter extends AirAbility {
 			return;
 		}
 
-		Vector velocity = this.player.getEyeLocation().getDirection().clone().normalize();
+		Vector velocity = this.player.getLocation().getDirection().clone().normalize();
 		velocity = velocity.clone().normalize().multiply(this.speed);
 		/*
 		 * checks the players speed and ends the move if they are going too slow

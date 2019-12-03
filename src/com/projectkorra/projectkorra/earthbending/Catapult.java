@@ -1,8 +1,5 @@
 package com.projectkorra.projectkorra.earthbending;
 
-import java.util.Random;
-
-import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -14,7 +11,6 @@ import org.bukkit.util.Vector;
 import com.projectkorra.projectkorra.GeneralMethods;
 import com.projectkorra.projectkorra.ability.EarthAbility;
 import com.projectkorra.projectkorra.attribute.Attribute;
-import com.projectkorra.projectkorra.util.ParticleEffect;
 
 public class Catapult extends EarthAbility {
 
@@ -26,14 +22,14 @@ public class Catapult extends EarthAbility {
 
 	private int stage;
 	private long stageStart;
-	private boolean charging;
+
 	private boolean activationHandled;
 	private Vector up;
 	private double angle;
 	private boolean cancelWithAngle;
 	private BlockData bentBlockData;
 
-	public Catapult(final Player player, final boolean sneak) {
+	public Catapult(final Player player) {
 		super(player);
 		this.setFields();
 		final Block b = player.getLocation().getBlock().getRelative(BlockFace.DOWN, 1);
@@ -50,15 +46,14 @@ public class Catapult extends EarthAbility {
 		if (this.bPlayer.isAvatarState()) {
 			this.cooldown = getConfig().getLong("Abilities.Avatar.AvatarState.Earth.Catapult.Cooldown");
 		}
-		
-		this.charging = sneak;
+
 		this.start();
 	}
 
 	private void setFields() {
 		this.stageTimeMult = getConfig().getDouble("Abilities.Earth.Catapult.StageTimeMult");
 		this.cooldown = getConfig().getLong("Abilities.Earth.Catapult.Cooldown");
-		this.angle = Math.toRadians(getConfig().getDouble("Abilities.Earth.Catapult.Angle"));
+		this.angle = 45;
 		this.cancelWithAngle = getConfig().getBoolean("Abilities.Earth.Catapult.CancelWithAngle");
 		this.activationHandled = false;
 		this.stage = 1;
@@ -90,21 +85,7 @@ public class Catapult extends EarthAbility {
 		
 		this.bentBlockData = b.getBlockData();
 
-		if (this.charging) {
-			if (this.stage == 4 || !this.player.isSneaking()) {
-				this.charging = false;
-			} else {
-				if ((System.currentTimeMillis() - this.stageStart) >= ((Math.max(0, this.stageTimeMult * (this.stage - 1))) * 1000)) {
-					this.stage++;
-					this.stageStart = System.currentTimeMillis();
-					final Random random = new Random();
-					ParticleEffect.BLOCK_DUST.display(this.player.getLocation(), 15, random.nextFloat(), random.nextFloat(), random.nextFloat(), bentBlockData);
-					ParticleEffect.BLOCK_DUST.display(this.player.getLocation().add(0, 0.5, 0), 10, random.nextFloat(), random.nextFloat(), random.nextFloat(), bentBlockData);
-					this.player.getWorld().playEffect(this.player.getLocation(), Effect.GHAST_SHOOT, 0, 10);
-				}
-			}
-			return;
-		}
+
 
 		Vector direction = null;
 		if (!this.activationHandled) {
@@ -125,14 +106,19 @@ public class Catapult extends EarthAbility {
 				this.remove();
 				return;
 			}
-			direction = this.up;
+			
+			Location targetloc = GeneralMethods.getTargetedLocation(player, stage*3.5, getTransparentMaterials());
+	        Vector dir = GeneralMethods.getDirection(player.getLocation(), targetloc).setY(stage);
+	        player.setVelocity(dir);
+			EarthAbility.playEarthbendingSound(player.getLocation());
 		}
+		//was done by boybuscuss, not dreamerboy.
+		Location targetloc = GeneralMethods.getTargetedLocation(player, stage*2, getTransparentMaterials());
+        Vector dir = GeneralMethods.getDirection(player.getLocation(), targetloc).setY(stage);
+        player.setVelocity(dir);
+		EarthAbility.playEarthbendingSound(player.getLocation());
 
-		final Location tar = this.origin.clone().add(direction.clone().normalize().multiply(this.stage + 0.5));
-		this.target = tar;
-		final Vector apply = this.target.clone().toVector().subtract(this.origin.clone().toVector());
-		this.player.setVelocity(apply);
-		this.moveEarth(apply, direction);
+		this.moveEarth(dir, direction);
 		this.remove();
 	}
 
@@ -156,7 +142,7 @@ public class Catapult extends EarthAbility {
 
 	@Override
 	public boolean isSneakAbility() {
-		return true;
+		return false;
 	}
 
 	@Override

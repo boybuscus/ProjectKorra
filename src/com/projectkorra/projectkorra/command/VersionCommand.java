@@ -24,7 +24,7 @@ public class VersionCommand extends PKCommand {
 			return;
 		}
 
-		sender.sendMessage(ChatColor.GREEN + "Core Version: " + ChatColor.RED + ProjectKorra.plugin.getDescription().getVersion());
+		sender.sendMessage(ChatColor.GREEN + "ModifiedCore Version: " + ChatColor.RED + "1.8.8.B9");
 		if (GeneralMethods.hasRPG()) {
 			sender.sendMessage(ChatColor.GREEN + "RPG Version: " + ChatColor.RED + GeneralMethods.getRPG().getDescription().getVersion());
 		}
@@ -39,7 +39,7 @@ public class VersionCommand extends PKCommand {
 		}
 		sender.sendMessage(ChatColor.GREEN + "Founded by: " + ChatColor.RED + "MistPhizzle");
 		sender.sendMessage(ChatColor.GREEN + "Special thanks to " + ChatColor.RED + "Orion304 " + ChatColor.GREEN + "for establishing this great community.");
-		sender.sendMessage(ChatColor.GREEN + "Learn More: " + ChatColor.RED + "http://projectkorra.com");
+		sender.sendMessage(ChatColor.DARK_RED + "--Modified by: Boybuscus and DreamerB0y_--");
 	}
 
 }

@@ -33,7 +33,7 @@ public class Immobilize extends ChiAbility implements ComboAbility {
 		this.duration = getConfig().getLong("Abilities.Chi.Immobilize.ParalyzeDuration");
 		this.range = getConfig().getDouble("Abilities.Chi.Immobilize.Range");
 		//TODO: add config options for Immobilize to config package for Range
-		this.target = GeneralMethods.getTargetedEntity(player, 5);
+		this.target = GeneralMethods.getTargetedEntity(player, range);
 		if (!this.bPlayer.canBendIgnoreBinds(this)) {
 			return;
 		}

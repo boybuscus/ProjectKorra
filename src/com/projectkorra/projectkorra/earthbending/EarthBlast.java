@@ -489,7 +489,7 @@ public class EarthBlast extends EarthAbility {
 			bPlayer.addCooldown(earthBlast);
 		}
 
-		
+		redirectTargettedBlasts(player, ignore);
 	}
 
 	@Override

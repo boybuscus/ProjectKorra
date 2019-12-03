@@ -135,6 +135,7 @@ import com.projectkorra.projectkorra.earthbending.metal.MetalClips;
 import com.projectkorra.projectkorra.earthbending.passive.DensityShift;
 import com.projectkorra.projectkorra.earthbending.passive.EarthPassive;
 import com.projectkorra.projectkorra.earthbending.passive.FerroControl;
+import com.projectkorra.projectkorra.earthbending.sand.SandSpout;
 import com.projectkorra.projectkorra.event.EntityBendingDeathEvent;
 import com.projectkorra.projectkorra.event.HorizontalVelocityChangeEvent;
 import com.projectkorra.projectkorra.event.PlayerChangeElementEvent;
@@ -1184,7 +1185,7 @@ public class PKListener implements Listener {
 				event.setCancelled(true);
 				return;
 			}
-		} else if (CoreAbility.hasAbility(player, WaterSpout.class) || CoreAbility.hasAbility(player, AirSpout.class)) {
+		} else if (CoreAbility.hasAbility(player, WaterSpout.class) || CoreAbility.hasAbility(player, AirSpout.class) || CoreAbility.hasAbility(player, SandSpout.class)) {
 			Vector vel = new Vector();
 			vel.setX(event.getTo().getX() - event.getFrom().getX());
 			vel.setZ(event.getTo().getZ() - event.getFrom().getZ());
@@ -1680,6 +1681,8 @@ public class PKListener implements Listener {
 						new EarthSmash(player, ClickType.LEFT_CLICK);
 					} else if (abil.equalsIgnoreCase("EarthGrab")) {
 						new EarthGrab(player, GrabMode.PROJECTING);
+					}  else if (abil.equalsIgnoreCase("SandSpout")) {
+						new SandSpout(player);
 					}
 				}
 			}

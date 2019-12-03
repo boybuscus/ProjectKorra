@@ -15,8 +15,10 @@ import com.projectkorra.projectkorra.util.Information;
 import com.projectkorra.projectkorra.util.ParticleEffect;
 import com.projectkorra.projectkorra.util.TempBlock;
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle.DustOptions;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -278,11 +280,8 @@ public abstract class EarthAbility extends ElementalAbility {
 			return;
 		}
 		
-		Material sand = red ? Material.RED_SAND : Material.SAND;
-		Material stone = red ? Material.RED_SANDSTONE : Material.SANDSTONE;
-		
-		ParticleEffect.BLOCK_CRACK.display(loc, amount, xOffset, yOffset, zOffset, speed, sand.createBlockData());
-		ParticleEffect.BLOCK_CRACK.display(loc, amount, xOffset, yOffset, zOffset, speed, stone.createBlockData());
+		DustOptions dust = red ? new DustOptions(Color.fromRGB(242, 136, 37), 1) : new DustOptions(Color.fromRGB(250, 245, 195), 1);
+		ParticleEffect.REDSTONE.display(loc, amount, xOffset, yOffset, zOffset, speed, dust);
 	}
 
 	/**

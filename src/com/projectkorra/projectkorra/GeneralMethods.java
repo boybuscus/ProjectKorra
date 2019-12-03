@@ -550,7 +550,6 @@ public class GeneralMethods {
 
 	/**
 	 * Calculates and sets velocity to entity from one point to another.
-	 * BendingPlugin and creates a converted.yml ready for conversion.
 	 *
 	 * @throws NullPointerException if entity is null.
 	 */

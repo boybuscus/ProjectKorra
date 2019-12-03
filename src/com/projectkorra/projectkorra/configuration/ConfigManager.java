@@ -348,6 +348,7 @@ public class ConfigManager {
 			config.addDefault("Abilities.Earth.EarthSmash.Description", "EarthSmash is an advanced earthbending technique that has lots of utility. It can be comboed with abilities such as Shockwave, but also be used for mobility and to produce high damage. EarthSmash is great for escaping when at low health.");
 			config.addDefault("Abilities.Earth.EarthSmash.Instructions", "\n" + "(Smash) Hold sneak until particles appear, then release sneak while looking at an earthbendable block which will raise an earth boulder. Then, hold sneak while looking at this boulder to control it. Left click to send the bounder in the direction you're facing, damanging entities and knocking them back." + "\n" + "(Ride) After you have created an earth boulder, hold sneak and right click on the boulder to ride it. You will now ride the boulder in whatever direction you look. Additionally, you can ride the boulder by going on top of it and holding sneak. If you come into contact with an entity while riding the boulder, it will drag them along with you. If you left go of sneak, the ability will cancel.");
 			config.addDefault("Abilities.Earth.EarthSmash.DeathMessage", "{victim} was crushed by {attacker}'s {ability}");
+			config.addDefault("Abilities.Earth.SandSpout.Description", "SandSpout is a core move for travelling, evasion, and mobility for sandbenders. To use, simply left click while over sand or sandstone, and a column of sand will form at your feet, enabling you to levitate. Any mobs or players that touch your column will receive damage and be blinded. Beware, as the spout will stop working when no longer over sand!");
 			config.addDefault("Abilities.Earth.MetalClips.Description", "MetalClips is an advanced metalbending ability that allows you to take control of a fight. It gives the metalbender the ability to control an entity, create space between them and a player and even added utility.");
 			config.addDefault("Abilities.Earth.MetalClips.Instructions", "\n" + "(Clips) This ability requires iron ingots in your inventory. Left click to throw an ingot at an entity, dealing damage to them. This ingot will form into armor, wrapping itself around the entity. Once enough armor pieces are around the entity, you can then control them. To control them, hold sneak while looking at them and then they will be moved in the direction you look. Additionally, you can release sneak to throw them in the direction you're looking." + "\n" + "(Magnet) Hold sneak with this ability to pull iron ingots towards you.");
 			config.addDefault("Abilities.Earth.MetalClips.DeathMessage", "{victim} was too slow for {attacker}'s {ability}");
@@ -692,6 +693,7 @@ public class ConfigManager {
 			config.addDefault("Abilities.Avatar.AvatarState.Earth.LavaFlow.ShiftPlatformRadius", 2);
 			config.addDefault("Abilities.Avatar.AvatarState.Earth.LavaFlow.ClickRadius", 10);
 			config.addDefault("Abilities.Avatar.AvatarState.Earth.LavaFlow.ShiftRadius", 12);
+			config.addDefault("Abilities.Avatar.AvatarState.Earth.SandSpout.Height", 26);
 			config.addDefault("Abilities.Avatar.AvatarState.Earth.MetalClips.Cooldown", 2000);
 			config.addDefault("Abilities.Avatar.AvatarState.Earth.MetalClips.Range", 20);
 			config.addDefault("Abilities.Avatar.AvatarState.Earth.MetalClips.CrushDamage", 3);
@@ -1242,6 +1244,13 @@ public class ConfigManager {
 			config.addDefault("Abilities.Earth.LavaFlow.AllowNaturalFlow", false);
 			config.addDefault("Abilities.Earth.LavaFlow.ParticleDensity", 0.11);
 			config.addDefault("Abilities.Earth.LavaFlow.RevertMaterial", "STONE");
+			
+			config.addDefault("Abilities.Earth.SandSpout.Enabled", true);
+			config.addDefault("Abilities.Earth.SandSpout.Cooldown", 0);
+			config.addDefault("Abilities.Earth.SandSpout.Height", 9);
+			config.addDefault("Abilities.Earth.SandSpout.BlindnessTime", 10);
+			config.addDefault("Abilities.Earth.SandSpout.SpoutDamage", 1);
+			config.addDefault("Abilities.Earth.SandSpout.Spiral", false);
 
 			config.addDefault("Abilities.Earth.EarthSmash.Enabled", true);
 			config.addDefault("Abilities.Earth.EarthSmash.Duration", 30000);

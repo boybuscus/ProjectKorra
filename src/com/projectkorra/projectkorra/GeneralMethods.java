@@ -464,10 +464,6 @@ public class GeneralMethods {
 						elements.add(Element.Chi);
 					if (element.contains("s")) 
 						elements.add(Element.Spirit);
-					if (element.contains("d"))
-						elements.add(Element.DarkSpirit);
-					if (element.contains("l")) 
-						elements.add(Element.LightSpirit);
 				}
 
 				final HashMap<Integer, String> abilities = new HashMap<Integer, String>();
@@ -1921,10 +1917,7 @@ public class GeneralMethods {
 			elements.append("c");
 		if (bPlayer.hasElement(Element.Spirit))
 			elements.append("s");
-		if (bPlayer.hasElement(Element.DarkSpirit))
-			elements.append("d");
-		if (bPlayer.hasElement(Element.LightSpirit))
-			elements.append("l");
+
 		DBConnection.sql.modifyQuery("UPDATE pk_players SET element = '" + elements + "' WHERE uuid = '" + uuid + "'");
 	}
 
@@ -2114,10 +2107,6 @@ public class GeneralMethods {
 				return ChiMethods.getChiColor();
 			case Spirit:
 				return ChatColor.GRAY;
-			case LightSpirit:
-				return ChatColor.YELLOW;
-			case DarkSpirit:
-				return ChatColor.LIGHT_PURPLE;
 		}
 		
 		return null;

@@ -1,6 +1,5 @@
 package com.projectkorra.projectkorra.waterbending;
 
-import com.projectkorra.projectkorra.BendingPlayer;
 import com.projectkorra.projectkorra.GeneralMethods;
 import com.projectkorra.projectkorra.ProjectKorra;
 import com.projectkorra.projectkorra.chiblocking.Paralyze;
@@ -9,8 +8,6 @@ import com.projectkorra.projectkorra.util.ClickType;
 import com.projectkorra.projectkorra.util.Flight;
 import com.projectkorra.projectkorra.util.ParticleEffect;
 import com.projectkorra.projectkorra.util.TempBlock;
-
-import sun.java2d.loops.DrawGlyphListAA.General;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -88,7 +85,6 @@ public class WaterSpout {
 
 	private void remove() {
 		revertBaseBlock(player);
-		GeneralMethods.getBendingPlayer(player.getName()).addCooldown("WaterSpoutFallFix", 5000);
 		instances.remove(player);
 	}
 

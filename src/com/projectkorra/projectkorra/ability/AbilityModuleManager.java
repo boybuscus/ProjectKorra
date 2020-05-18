@@ -26,6 +26,9 @@ public class AbilityModuleManager {
 	public static List<String> earthbendingabilities;
 	public static List<String> firebendingabilities;
 	public static List<String> chiabilities;
+	public static List<String> spiritabilities;
+	public static List<String> lightspiritabilities;
+	public static List<String> darkspiritabilities;
 	public static List<String> shiftabilities;
 	public static HashMap<String, String> authors;
 	public static List<String> harmlessabilities;
@@ -61,6 +64,9 @@ public class AbilityModuleManager {
 		earthbendingabilities = new ArrayList<String>();
 		firebendingabilities = new ArrayList<String>();
 		chiabilities = new ArrayList<String>();
+		spiritabilities = new ArrayList<String>();
+		lightspiritabilities = new ArrayList<String>();
+		darkspiritabilities = new ArrayList<String>();
 		shiftabilities = new ArrayList<String>();
 		descriptions = new HashMap<String, String>();
 		authors = new HashMap<String, String>();

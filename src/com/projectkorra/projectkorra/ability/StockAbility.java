@@ -95,6 +95,15 @@ public enum StockAbility {
 	public enum AvatarAbilities {
 		AvatarState;
 	}
+	public enum SpiritAbilities {
+		Dash, Possess, Soar, Vanish;
+	}
+	public enum DarkSpiritAbilities {
+		Intoxicate, Shackle, Strike;
+	}
+	public enum LightSpiritAbilities {
+		Alleviate, Orb, Shelter;
+	}
 
 	public static boolean isFlightAbility(String ability) {
 		for (FlightAbilities a : FlightAbilities.values())

@@ -470,7 +470,7 @@ public class PKListener implements Listener {
 			return;
 
 		Entity entity = event.getEntity();
-
+		
 		if (event.getCause() == DamageCause.FIRE && FireStream.ignitedblocks.containsKey(entity.getLocation().getBlock())) {
 			new Enflamed(entity, FireStream.ignitedblocks.get(entity.getLocation().getBlock()));
 		}
@@ -482,6 +482,10 @@ public class PKListener implements Listener {
 
 		if (entity instanceof Player) {
 			Player player = (Player) entity;
+			if (event.getCause() == DamageCause.FALL && GeneralMethods.getBendingPlayer(player.getName()).isOnCooldown("WaterSpoutFallFix")) {
+				event.setCancelled(true);
+				GeneralMethods.getBendingPlayer(player.getName()).addCooldown("WaterSpoutFallFix", 0);
+			}
 			if (GeneralMethods.getBendingPlayer(player.getName()).isElementToggled(Element.Fire))
 				return;
 			if (GeneralMethods.getBoundAbility(player) != null && GeneralMethods.getBoundAbility(player).equalsIgnoreCase("HeatControl")) {
